@@ -1,0 +1,57 @@
+Aiming to improve in:
+- Web dev
+- Kafka
+- Async
+
+How it Works
+- Request made
+- Amazon Location Services checks location
+- Checks if departure airport has been searched today
+- If so, finds the hottest location within budget
+- If not, has to request API for this info
+- Returns AI hype message for the holiday
+
+Increasing Latency
+- Async for multiple concurrent requests
+- Uses stored data for same airport departure requests
+
+UK Airports (departure locations):
+London, United Kingdom: LHR (Heathrow, Gatwick, Stansted, Luton)
+Manchester, United Kingdom: MAN (Manchester Airport)
+Edinburgh, United Kingdom: EDI (Edinburgh Airport)
+Birmingham, United Kingdom: BHX (Birmingham Airport)
+Bristol, United Kingdom: BRS (Bristol Airport)
+Glasgow, United Kingdom: GLA (Glasgow Airport)
+Liverpool, United Kingdom: LPL (Liverpool John Lennon Airport)
+
+Destination Locations:
+Paris, France: CDG (Charles de Gaulle Airport)
+Amsterdam, Netherlands: AMS (Amsterdam Airport Schiphol)
+Rome, Italy: FCO (Leonardo da Vinci–Fiumicino Airport)
+Madrid, Spain: MAD (Adolfo Suárez Madrid–Barajas Airport)
+Lisbon, Portugal: LIS (Humberto Delgado Airport)
+Athens, Greece: ATH (Eleftherios Venizelos Airport)
+Barcelona, Spain: BCN (Barcelona El Prat Airport)
+Berlin, Germany: BER (Berlin Brandenburg Airport)
+Milan, Italy: MXP (Malpensa Airport)
+Vienna, Austria: VIE (Vienna International Airport)
+Brussels, Belgium: BRU (Brussels Airport)
+Prague, Czech Republic: PRG (Václav Havel Airport Prague)
+Budapest, Hungary: BUD (Budapest Ferenc Liszt International Airport)
+Zurich, Switzerland: ZRH (Zurich Airport)
+Cairo, Egypt: CAI (Cairo International Airport)
+Casablanca, Morocco: CMN (Mohammed V International Airport)
+Marrakech, Morocco: RAK (Marrakech Menara Airport)
+Tunis, Tunisia: TUN (Tunis-Carthage International Airport)
+Algiers, Algeria: ALG (Houari Boumediene Airport)
+Tripoli, Libya: TIP (Tripoli International Airport)
+Tangier, Morocco: TNG (Ibn Battuta Airport)
+Agadir, Morocco: AGA (Al Massira Airport)
+Beirut, Lebanon: BEY (Beirut–Rafic Hariri International Airport)
+Amman, Jordan: AMM (Queen Alia International Airport)
+Istanbul, Turkey: IST (Istanbul Airport)
+Doha, Qatar: DOH (Hamad International Airport)
+Abu Dhabi, UAE: AUH (Abu Dhabi International Airport)
+Kuwait City, Kuwait: KWI (Kuwait International Airport)
+Manama, Bahrain: BAH (Bahrain International Airport)
+Riyadh, Saudi Arabia: RUH (King Khalid International Airport)
