@@ -40,7 +40,7 @@ def find_my_flight(location: str, budget):
     departure_code = find_nearest_airport(location)[0]
 
     today = datetime.today().strftime('%Y-%m-%d')
-    dir_path = f'./data/tabular/{today}'
+    dir_path = f'./data/{today}'
     csv_path = dir_path + f'/{departure_code}.csv'
 
     if not os.path.exists(csv_path):
@@ -67,13 +67,15 @@ def find_my_flight(location: str, budget):
     city_name = hottest_city_row['City']
     temperature = int(hottest_city_row['Temperature (°C)'])
     flight_price = float(hottest_city_row['Price'])
-    flight_date = hottest_city_row['Date']
     uk_temp_diff = temperature - int(temps_df[temps_df['City'] == "London"]['Temperature (°C)'].values[0])
+
+    unformatted_date = hottest_city_row['Date']
+    flight_date = datetime.strptime(unformatted_date, "%Y-%m-%d").strftime("%d %B %Y")
 
     ai_overview = gemini(f'Write a couple paragraphs to someone who is going to {city_name} with plane tickets costing £{flight_price}. It is {uk_temp_diff} hotter than here in the UK. Talk about what a great destination it is, how they are getting a lot of sun for value and the unique attractions/history/culture. No preamble.')
 
     depart_from = find_nearest_airport(location)[1]
-    pic_path = f'./data/images/{city_name}.jpg'
+    pic_path = f'media/images/{city_name}.jpg'
 
     return depart_from, city_name, pic_path, flight_price, flight_date, temperature, uk_temp_diff, ai_overview
 

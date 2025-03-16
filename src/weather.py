@@ -54,7 +54,7 @@ locations = {
 headers = ["City", "Temperature (°C)"]
 
 today = datetime.today().strftime('%Y-%m-%d')
-new_directory = f'./data/tabular/{today}'
+new_directory = f'./data/{today}'
 os.makedirs(new_directory, exist_ok=True)
 
 weather_file_path = new_directory + '/temps.csv'
