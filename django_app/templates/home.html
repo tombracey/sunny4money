@@ -1,26 +1,98 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Find Your Holiday Escape</title>
-</head>
-<body>
-    <h1>Find the hottest holiday escape possible...</h1>
+    <head>
+        <title>sunny4money</title>
+        <style>
+            body {
+                background-color: #729fcf;
+                color: white;
+                font-family: 'Liberation Sans', sans-serif;
+                margin: 0;
+                padding: 0;
+                font-size: 16px;
+                text-align: center;
+            }
 
-    <form method="POST">
-        {% csrf_token %}
-        <label for="location">Your approx. location:</label>
-        <input type="text" name="location" id="location" required><br>
+            .logo-image {
+                max-width: 600px;
+                width: 100%;
+                height: auto;
+                padding-left: 20px;
+                padding-right: 20px;
+                padding-top: 10px;
+                box-sizing: border-box;
+            }
 
-        <label for="budget">Your budget (£):</label>
-        <input type="number" name="budget" id="budget" required><br>
+            .city-image {
+                max-width: 600px;
+                width: 100%;
+                height: auto;
+            }
 
-        <button type="submit">Submit</button>
-    </form>
+            h1, h3, h5, p {
+                margin: 0 auto;
+                padding-top: 5px;
+                padding-bottom: 5px;
+            }
 
-    {% if city_name %}
-        <h2>You're going to {{ city_name }} on {{ flight_date }}!</h2>
+            form {
+                text-align: center;
+                padding: 20px;
+                margin-bottom: 0;
+            }
+
+            h2, p {
+                margin-top: 0;
+                margin-bottom: 10px;
+            }
+
+
+            input, button {
+                padding: 10px;
+                margin: 10px;
+                font-size: 16px;
+            }
+
+            .ai_overview {
+                padding-top: 10px;
+                padding-bottom: 20px;
+                padding-right: 15px;
+                padding-left: 15px;
+                max-width: 700px;
+            }
+        </style>
+    </head>
+    
+    <body>
+        <img src="media/images/logo.png" class="logo-image">
+        <h1>Find the hottest holiday escape possible...</h1>
+
+        <form method="POST">
+            {% csrf_token %}
+            <label for="location" style="font-weight: bold;">Your approx. location:</label>
+            <input type="text" name="location" id="location" placeholder="Any UK city or post code will do" style="font-size: 14px; width: 300px; padding: 10px;" required><br>
+            
+            <label for="budget" style="font-weight: bold;">Your budget (£):</label>
+            <input type="number" name="budget" id="budget" placeholder="Recommended range: 50-150" style="font-size: 14px; width: 300px; padding: 10px;" required><br>
+            
+                    
+
+            <button type="submit">Submit</button>
+        </form>
+
+
+        
+        {% if city_name %}
+        <h2>You're going to {{ city_name }}!</h2>
+        <p>Departing from {{ depart_from }} on {{ flight_date }}</p>
+        
+        <img src="{{ MEDIA_URL }}{{ pic_path }}" alt="city_image" class="city-image">
+        <h3>Ticket Price: £{{ flight_price }}</h3>
+        <h3>Temperature: {{ temperature }}°C ({{ uk_temp_diff }}°C hotter than the UK)</h3>
+        <p class="ai_overview">{{ ai_overview }}</p>
+    {% else %}
+        <h2>No flights available at that price.</h2>
     {% endif %}
-</body>
+    
+    </body>
 </html>
