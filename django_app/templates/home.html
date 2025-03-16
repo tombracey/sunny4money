@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Find Your Holiday Escape</title>
+</head>
+<body>
+    <h1>Find the hottest holiday escape possible...</h1>
+
+    <form method="POST">
+        {% csrf_token %}
+        <label for="location">Your approx. location:</label>
+        <input type="text" name="location" id="location" required><br>
+
+        <label for="budget">Your budget (£):</label>
+        <input type="number" name="budget" id="budget" required><br>
+
+        <button type="submit">Submit</button>
+    </form>
+
+    {% if city_name %}
+        <h2>You're going to {{ city_name }} on {{ flight_date }}!</h2>
+    {% endif %}
+</body>
+</html>
