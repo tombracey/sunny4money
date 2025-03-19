@@ -58,7 +58,8 @@ def find_my_flight(location: str, budget):
     temps_df = pd.read_csv(f'{dir_path}/temps.csv')
     flights_df = pd.read_csv(csv_path)
     merged_df = pd.merge(flights_df, temps_df, on="City", how="inner")
-    filtered_df = merged_df[merged_df['Price'] <= budget]
+    london_temp = temps_df.loc[temps_df['City'] == 'London', 'Temperature (°C)'].values[0]
+    filtered_df = merged_df[(merged_df['Price'] <= budget) & (merged_df['Temperature (°C)'] > london_temp)]
 
     if filtered_df.empty:
         return None
@@ -79,4 +80,4 @@ def find_my_flight(location: str, budget):
 
     return depart_from, city_name, pic_path, flight_price, flight_date, temperature, uk_temp_diff, ai_overview
 
-print(find_my_flight("Hanwell", 150))
+print(find_my_flight("Hanwell", 45))
