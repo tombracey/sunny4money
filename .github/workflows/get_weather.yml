@@ -1,7 +1,10 @@
 on:
   schedule:
-    - cron: '0 2 * * *' 
+    - cron: '0 0 * * *' 
   workflow_dispatch:
+
+permissions:
+  contents: write
 
 jobs:
   run_weather_script:
@@ -23,3 +26,11 @@ jobs:
 
       - name: Run weather script
         run: python src/weather.py
+
+      - name: Commit and push news files
+        run: |
+          git config --global user.name "github-actions"
+          git config --global user.email "github-actions@github.com"
+          git add .
+          git commit -m "Auto-update: ran weather script" || echo "No changes to commit"
+          git push
