@@ -7,9 +7,9 @@ def home(request):
         budget = float(request.POST.get('budget'))
         result = find_my_flight(location, budget)
         if result:
-            depart_from, city_name, pic_path, flight_price, flight_date, temperature, uk_temp_diff, ai_overview = result
+            depart_from, city_name, pic_path, flight_price, flight_date, temperature, uk_temp_diff, ai_para_1, ai_para_2 = result
         else:
-            depart_from = city_name = pic_path = flight_price = flight_date = temperature = uk_temp_diff = ai_overview = None
+            depart_from = city_name = pic_path = flight_price = flight_date = temperature = uk_temp_diff = ai_para_1 = ai_para_2 = None
 
 
         return render(request, 'home.html', {
@@ -20,7 +20,8 @@ def home(request):
             'flight_date': flight_date,
             'temperature': temperature,
             'uk_temp_diff': uk_temp_diff,
-            'ai_overview': ai_overview,
+            'ai_para_1': ai_para_1,
+            'ai_para_2': ai_para_2,
         })
     else:
         return render(request, 'home.html')
