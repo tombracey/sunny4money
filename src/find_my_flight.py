@@ -40,6 +40,10 @@ def find_my_flight(location: str, budget):
     departure_code = find_nearest_airport(location)[0]
 
     today = datetime.today().strftime('%Y-%m-%d')
+    new_directory = f'./data/{today}'
+    if not os.path.exists(new_directory):
+        os.makedirs(new_directory, exist_ok=True)
+
     dir_path = f'./data/{today}'
     csv_path = dir_path + f'/{departure_code}.csv'
 
