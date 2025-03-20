@@ -53,9 +53,16 @@
                 font-size: 16px;
             }
 
-            .ai_overview {
+            .ai_para_1 {
                 padding-top: 10px;
-                padding-bottom: 20px;
+                padding-right: 15px;
+                padding-left: 15px;
+                max-width: 700px;
+            }
+
+            .ai_para_2 {
+                padding-top: 8px;
+                padding-bottom: 25px;
                 padding-right: 15px;
                 padding-left: 15px;
                 max-width: 700px;
@@ -89,10 +96,10 @@
         <img src="{{ MEDIA_URL }}{{ pic_path }}" alt="city_image" class="city-image">
         <h3>Ticket Price: £{{ flight_price }}</h3>
         <h3>Temperature today: {{ temperature }}°C ({{ uk_temp_diff }}°C hotter than the UK)</h3>
-        <p class="ai_overview">{{ ai_para_1 }}</p>
-        <p class="ai_overview">{{ ai_para_2 }}</p>
+        <p class="ai_para_1">{{ ai_para_1 }}</p>
+        <p class="ai_para_2">{{ ai_para_2 }}</p>
     {% else %}
-        <h2>No flights available at that price.</h2>
+        <h2>No flights available to hotter countries available at that price.</h2>
     {% endif %}
     
     </body>
