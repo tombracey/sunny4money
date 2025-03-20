@@ -89,7 +89,8 @@
         <img src="{{ MEDIA_URL }}{{ pic_path }}" alt="city_image" class="city-image">
         <h3>Ticket Price: £{{ flight_price }}</h3>
         <h3>Temperature today: {{ temperature }}°C ({{ uk_temp_diff }}°C hotter than the UK)</h3>
-        <p class="ai_overview">{{ ai_overview }}</p>
+        <p class="ai_overview">{{ ai_para_1 }}</p>
+        <p class="ai_overview">{{ ai_para_2 }}</p>
     {% else %}
         <h2>No flights available at that price.</h2>
     {% endif %}

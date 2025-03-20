@@ -77,11 +77,13 @@ def find_my_flight(location: str, budget):
     unformatted_date = hottest_city_row['Date']
     flight_date = datetime.strptime(unformatted_date, "%Y-%m-%d").strftime("%d %B %Y")
 
-    ai_overview = gemini(f'Write a couple paragraphs to someone who is going to {city_name} with plane tickets costing £{flight_price}. It is {uk_temp_diff} hotter than here in the UK. Talk about what a great destination it is, how they are getting a lot of sun for value and the unique attractions/history/culture. No preamble.')
+    ai_overview = gemini(f'Write 2 couple paragraphs split by <<PARAGRAPH>> to someone who is going to {city_name} with plane tickets costing £{flight_price}. It is {uk_temp_diff} hotter than here in the UK. Talk about what a great destination it is, how they are getting a lot of sun for value and the unique attractions/history/culture. No preamble.')
+    ai_para_1 = ai_overview[0]
+    ai_para_2 = ai_overview[1]
 
     depart_from = find_nearest_airport(location)[1]
     pic_path = f'media/images/{city_name}.jpg'
 
-    return depart_from, city_name, pic_path, flight_price, flight_date, temperature, uk_temp_diff, ai_overview
+    return depart_from, city_name, pic_path, flight_price, flight_date, temperature, uk_temp_diff, ai_para_1, ai_para_2
 
 print(find_my_flight("Hanwell", 45))
