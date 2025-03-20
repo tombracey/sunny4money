@@ -21,11 +21,13 @@ jobs:
 
       - name: Install dependencies
         run: |
-          pip install requests
-          pip install python-dotenv
+          pip install requests python-dotenv
 
       - name: Run weather script
         run: python src/weather.py
+        env:
+          OPENWEATHER_API_KEY: ${{ secrets.OPENWEATHER_API_KEY }}
+        
 
       - name: Commit and push news files
         run: |
