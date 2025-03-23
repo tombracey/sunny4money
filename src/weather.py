@@ -9,17 +9,24 @@ load_dotenv()
 def get_weather(city):
     openweather_api_key = os.getenv("OPENWEATHER_API_KEY")
     
-    url = f"http://api.openweathermap.org/data/2.5/weather?q={city}&appid={openweather_api_key}"
-
+    url = f"https://api.openweathermap.org/data/2.5/forecast?q={city}&appid={openweather_api_key}"
     response = requests.get(url)
     data = response.json()
-
+    
     if response.status_code == 200:
-        kelvin_temp = data['main']['temp_max']
-        temp = round(kelvin_temp - 273)
+        max_temp = 0
+        
+        for forecast in data['list']:
+            kelvin_temp = forecast['main']['temp_max']
+            
+            if max_temp is None or kelvin_temp > max_temp:
+                max_temp = kelvin_temp
+        
+        temp = round(max_temp - 273)
         return temp
     else:
         return None
+
 
 locations = {
     "UK": {"city": "London", "country": "UK"},
