@@ -7,10 +7,6 @@ def geocode_address(address):
             IndexName='MyPlaceIndex',
             Text=address
         )
-        coordinates = response['Results'][0]['Place']['Geometry']['Point']
+        lon, lat = response['Results'][0]['Place']['Geometry']['Point']
+        coordinates = (lat, lon)
         return coordinates
-
-if __name__ == "__main__":
-    print(geocode_address("Ealing"))
-    print(geocode_address("Glasgow"))
-    print(geocode_address("SW19"))

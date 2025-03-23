@@ -32,16 +32,8 @@ def find_nearest_airport(location: str):
         airport_code = airport
         aiport_name = details["name"]
         airport_coords = details["coords"]
-        airport_distance = find_relative_distance(airport_code, airport_coords, user_coords)
-        distances.update({airport_code: airport_distance})
-    
-    # print(distances)
-
-
-    # for airport_code, details in uk_airports.items():
-    #     airport_coords = details["coords"]
-    #     _, airport_distance = find_relative_distance(airport_code, airport_coords, user_coords)
-    #     distances[airport_code] = airport_distance
+        airport_code, distance = find_relative_distance(airport_code, airport_coords, user_coords)
+        distances[airport_code] = distance
 
     departure_code = min(distances, key=distances.get)
     airport_name = uk_airports[departure_code]["name"]
