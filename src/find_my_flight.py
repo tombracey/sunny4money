@@ -82,11 +82,11 @@ def find_my_flight(location: str, budget, see_the_sea=False):
     departure_code = find_nearest_airport(location)[0]
     csv_path = dir_path + f'/{departure_code}.csv'
 
+    temps_df = pd.read_csv(f'{dir_path}/temps.csv')
     flights_df = pd.read_csv(csv_path)
     merged_df = pd.merge(flights_df, temps_df, on="City", how="inner")
     filtered_df = merged_df[merged_df['Price'] <= budget]
 
-    temps_df = pd.read_csv(f'{dir_path}/temps.csv')
     uk_avg_temp = int(temps_df.loc[temps_df['City'] == 'United Kingdom', 'Temperature (°C)'].values[0])
 
     if see_the_sea:
