@@ -81,8 +81,9 @@
             
             <label for="budget" style="font-weight: bold;">Your budget (£):</label>
             <input type="number" name="budget" id="budget" placeholder="Recommended range: 50-150" style="font-size: 14px; width: 300px; padding: 10px;" required><br>
-            
-                    
+
+            <label for="sea" style="font-weight: bold;">I need to see the sea!</label>                
+            <input type="checkbox" id="sea" name="sea"><br>
 
             <button type="submit">Submit</button>
         </form>
@@ -95,10 +96,10 @@
         
         <img src="{{ MEDIA_URL }}{{ pic_path }}" alt="city_image" class="city-image">
         <h3>Ticket Price: £{{ flight_price }}</h3>
-        <h3>Temperature today: {{ temperature }}°C ({{ uk_temp_diff }}°C hotter than the UK)</h3>
+        <h3>Temperature today: {{ temperature }}°C ({{ uk_temp_diff }}°C hotter than the UK average)</h3>
         <p class="ai_para_1">{{ ai_para_1 }}</p>
         <p class="ai_para_2">{{ ai_para_2 }}</p>
-    {% else %}
+        {% elif location and budget %}
         <h2>No flights available to hotter countries available at that price.</h2>
     {% endif %}
     
