@@ -1,19 +1,19 @@
 on:
   schedule:
-    - cron: '0 0 * * *' 
+    - cron: '0 3 * * *'
   workflow_dispatch:
 
 permissions:
   contents: write
 
 jobs:
-  run_weather_script:
+  run_flight_script:
     runs-on: ubuntu-latest
-    
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
-        
+
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
@@ -23,16 +23,15 @@ jobs:
         run: |
           pip install requests python-dotenv
 
-      - name: Run weather script
-        run: python src/weather.py
+      - name: Run find_my_flight script
+        run: python src/find_my_flight.py
         env:
-          OPENWEATHER_API_KEY: ${{ secrets.OPENWEATHER_API_KEY }}
-        
+          RAPIDAPI_KEY: ${{ secrets.RAPIDAPI_KEY }}
 
-      - name: Commit and push news files
+      - name: Commit and push changes
         run: |
           git config --global user.name "github-actions"
           git config --global user.email "github-actions@github.com"
           git add .
-          git commit -m "Auto-update: ran weather script"
+          git commit -m "Auto-update: ran find_my_flight script"
           git push
