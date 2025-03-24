@@ -49,15 +49,13 @@ destinations = {
     "AGA": {"city": "Agadir", "country": "Morocco", "beach": True}
 }
 
-
-today = datetime.today().strftime('%Y-%m-%d')
-new_directory = f'./data/{today}'
-if not os.path.exists(new_directory):
-    os.makedirs(new_directory, exist_ok=True)
-
-dir_path = f'./data/{today}'
-
 def store_flight_data(departure_code):
+    today = datetime.today().strftime('%Y-%m-%d')
+    new_directory = f'./data/{today}'
+    if not os.path.exists(new_directory):
+        os.makedirs(new_directory, exist_ok=True)
+    dir_path = f'./data/{today}'
+
     csv_path = dir_path + f'/{departure_code}.csv'
 
     headers = ["City", "Price", "Date", "Beach"]
@@ -79,15 +77,22 @@ if __name__ == "__main__":
         store_flight_data(airport)
 
 def find_my_flight(location: str, budget, see_the_sea=False):
+    today = datetime.today().strftime('%Y-%m-%d')
+    new_directory = f'./data/{today}'
+    if not os.path.exists(new_directory):
+        os.makedirs(new_directory, exist_ok=True)
+
+    dir_path = f'./data/{today}'
+
     departure_code = find_nearest_airport(location)[0]
     csv_path = dir_path + f'/{departure_code}.csv'
 
     temps_df = pd.read_csv(f'{dir_path}/temps.csv')
+    uk_avg_temp = int(temps_df.loc[temps_df['City'] == 'United Kingdom', 'Temperature (°C)'].values[0])
+
     flights_df = pd.read_csv(csv_path)
     merged_df = pd.merge(flights_df, temps_df, on="City", how="inner")
     filtered_df = merged_df[merged_df['Price'] <= budget]
-
-    uk_avg_temp = int(temps_df.loc[temps_df['City'] == 'United Kingdom', 'Temperature (°C)'].values[0])
 
     if see_the_sea:
         filtered_df = filtered_df[filtered_df['Beach'] == True]
