@@ -102,7 +102,7 @@ def find_my_flight(location: str, budget, see_the_sea=False):
     hottest_city_row = filtered_df.loc[filtered_df['Temperature (°C)'].idxmax()]
     city_name = hottest_city_row['City']
     temperature = int(hottest_city_row['Temperature (°C)'])
-    flight_price = float(hottest_city_row['Price'])
+    flight_price = f"{float(hottest_city_row['Price']):.2f}"
 
     unformatted_date = hottest_city_row['Date']
     flight_date = datetime.strptime(unformatted_date, "%Y-%m-%d").strftime("%d %B %Y")
