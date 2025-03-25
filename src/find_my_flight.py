@@ -1,6 +1,5 @@
 import os
 import csv
-import math
 from datetime import datetime
 import pandas as pd
 from src.utils.get_flight_price import get_min_flight_price

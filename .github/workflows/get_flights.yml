@@ -21,7 +21,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          pip install requests python-dotenv
+          pip install -r requirements.txt
 
       - name: Run find_my_flight script
         run: python src/find_my_flight.py
