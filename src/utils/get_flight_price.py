@@ -27,7 +27,12 @@ def get_min_flight_price(departure_id, destination_id):
     }
 
     response = requests.get(url, headers=headers, params=querystring)
-    data = response.json()
+    try:
+        data = response.json()
+    except requests.exceptions.JSONDecodeError as e:
+        print(f"JSON Decode Error: {e}")
+        print("Raw response text:", response.text)
+        return None
 
     cheapest_flight = None
     if "data" in data:

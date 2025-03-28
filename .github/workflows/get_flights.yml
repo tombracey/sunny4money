@@ -23,13 +23,15 @@ jobs:
         run: |
           pip install -r requirements.txt
 
+      - name: Set AWS Region
+        run: echo "AWS_REGION=eu-west-2" >> $GITHUB_ENV
+
       - name: Run find_my_flight script
         run: |
           export PYTHONPATH=$(pwd)
           python src/find_my_flight.py
         env:
           RAPIDAPI_KEY: ${{ secrets.RAPIDAPI_KEY }}
-
 
       - name: Commit and push changes
         run: |

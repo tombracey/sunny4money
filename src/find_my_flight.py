@@ -55,20 +55,27 @@ def store_flight_data(departure_code):
         os.makedirs(new_directory, exist_ok=True)
     dir_path = f'./data/{today}'
 
-    csv_path = dir_path + f'/{departure_code}.csv'
+    csv_path = f'{dir_path}/{departure_code}.csv'
 
     headers = ["City", "Price", "Date", "Beach"]
-    with open (csv_path, 'w', newline='') as f:
+    with open(csv_path, 'w', newline='') as f:
         writer = csv.writer(f)
         writer.writerow(headers)
+        
         for destination, details in destinations.items():
             flight = get_min_flight_price(departure_code, destination)
-            if flight:
-                city = details["city"]
-                beach = details["beach"]
-                price = flight[0]
-                date = flight[1]
-                writer.writerow([city, price, date, beach])
+            
+            if flight is None:
+                print(f"Error: No flight data found for {departure_code} -> {destination}")
+                continue
+            
+            city = details["city"]
+            beach = details["beach"]
+            price, date = flight
+            
+            writer.writerow([city, price, date, beach])
+            print(f"Stored: {departure_code} -> {city} (£{price}, {date}, Beach: {beach})")
+
 
 if __name__ == "__main__":
     uk_airports = ['LON', 'MAN', 'EDI', 'BHX', 'BRS', 'GLA', 'LPL']
