@@ -29,6 +29,7 @@ jobs:
       - name: Run find_my_flight script
         run: |
           export PYTHONPATH=$(pwd)
+          export AWS_REGION=eu-west-2
           python src/find_my_flight.py
         env:
           RAPIDAPI_KEY: ${{ secrets.RAPIDAPI_KEY }}
