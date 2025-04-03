@@ -1,5 +1,5 @@
 City,Temperature (°C)
-United Kingdom,16
+United Kingdom,15
 Paris,23
 Amsterdam,20
 Rome,31
@@ -14,25 +14,26 @@ Brussels,21
 Prague,18
 Budapest,18
 Zurich,19
-Cairo,34
+Cairo,35
 Casablanca,22
-Marrakech,31
+Marrakech,29
 Tunis,28
 Algiers,28
-Tripoli,24
-Tangier,23
-Beirut,20
-Amman,28
+Tripoli,23
+Tangier,20
+Beirut,24
+Amman,29
 Doha,36
-Manama,34
+Manama,33
+Santorini,17
 Albufeira,18
-Catania,19
+Catania,20
 Malaga,23
 Dubrovnik,17
-Naples,19
+Naples,20
 Toulon,18
 Sharm El Sheikh,28
-Hurghada,31
+Hurghada,30
 Djerba,27
-Essaouira,22
-Agadir,23
+Essaouira,21
+Agadir,22
