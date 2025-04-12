@@ -1,107 +1,67 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <title>sunny4money</title>
-        <style>
-            body {
-                background-color: #729fcf;
-                color: white;
-                font-family: 'Liberation Sans', sans-serif;
-                margin: 0;
-                padding: 0;
-                font-size: 16px;
-                text-align: center;
-            }
+<head>
+    <title>sunny4money</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-            .logo-image {
-                max-width: 600px;
-                width: 100%;
-                height: auto;
-                padding-left: 20px;
-                padding-right: 20px;
-                padding-top: 10px;
-                box-sizing: border-box;
-            }
+</head>
 
-            .city-image {
-                max-width: 600px;
-                width: 100%;
-                height: auto;
-            }
+<body>
+    <div class="logo-container">
+        <img src="/media/images/plane.png" alt="Plane" class="plane">
+        <img src="/media/images/sun.png" alt="Sun" class="sun">
+        <h1>sunny4money.co.uk</h1>
+    </div>
+    <h1>Find the hottest holiday escape possible...</h1>
 
-            h1, h3, h5, p {
-                margin: 0 auto;
-                padding-top: 5px;
-                padding-bottom: 5px;
-            }
-
-            form {
-                text-align: center;
-                padding: 20px;
-                margin-bottom: 0;
-            }
-
-            h2, p {
-                margin-top: 0;
-                margin-bottom: 10px;
-            }
-
-
-            input, button {
-                padding: 10px;
-                margin: 10px;
-                font-size: 16px;
-            }
-
-            .ai_para_1 {
-                padding-top: 10px;
-                padding-right: 15px;
-                padding-left: 15px;
-                max-width: 700px;
-            }
-
-            .ai_para_2 {
-                padding-top: 8px;
-                padding-bottom: 25px;
-                padding-right: 15px;
-                padding-left: 15px;
-                max-width: 700px;
-            }
-        </style>
-    </head>
+    <form id="sunnyForm" method="POST" onsubmit="sessionStorage.removeItem('pageLoaded');">
+        {% csrf_token %}
+        <label for="location">Your approx. location:</label>
+        <input type="text" name="location" id="location" placeholder="Any UK city or post code will do" style="font-size: 14px; width: 300px; padding: 10px;" required><br>
     
-    <body>
-        <img src="media/images/logo.png" class="logo-image">
-        <h1>Find the hottest holiday escape possible...</h1>
+        <label for="budget">Your budget (£):</label>
+        <input type="number" name="budget" id="budget" placeholder="Recommended range: 50-150" style="font-size: 14px; width: 300px; padding: 10px;" required><br>
+    
+        <label for="sea">I need to see the sea!</label>
+        <input type="checkbox" id="sea" name="sea"><br>
+    
+        <button type="submit">Submit</button>
+    </form>
 
-        <form method="POST">
-            {% csrf_token %}
-            <label for="location" style="font-weight: bold;">Your approx. location:</label>
-            <input type="text" name="location" id="location" placeholder="Any UK city or post code will do" style="font-size: 14px; width: 300px; padding: 10px;" required><br>
-            
-            <label for="budget" style="font-weight: bold;">Your budget (£):</label>
-            <input type="number" name="budget" id="budget" placeholder="Recommended range: 50-150" style="font-size: 14px; width: 300px; padding: 10px;" required><br>
+    <div id="loading" style="display: none;">
+        <div class="spinner"></div>
+        <p>Finding you somewhere warmer...</p>
+    </div>
+    
+    <div id="results">
+        {% if no_flights_message %}
+            <h2>{{ no_flights_message }}</h2>
+        {% endif %}
 
-            <label for="sea" style="font-weight: bold;">I need to see the sea!</label>                
-            <input type="checkbox" id="sea" name="sea"><br>
-
-            <button type="submit">Submit</button>
-        </form>
-
-
-        
         {% if city_name %}
-        <h2>You're going to {{ city_name }}!</h2>
-        <p>Departing from {{ depart_from }} on {{ flight_date }}</p>
-        
-        <img src="{{ MEDIA_URL }}{{ pic_path }}" alt="city_image" class="city-image">
-        <h3>Ticket Price: £{{ flight_price }}</h3>
-        <h3>Temperature today: {{ temperature }}°C ({{ uk_temp_diff }}°C hotter than the UK average)</h3>
-        <p class="ai_para_1">{{ ai_para_1 }}</p>
-        <p class="ai_para_2">{{ ai_para_2 }}</p>
-        {% elif location and budget %}
-        <h2>No flights available to hotter countries available at that price.</h2>
-    {% endif %}
-    
-    </body>
+            <div class="container">
+                <h2 class="reveal">You're going to {{ city_name }}!</h2>
+                <p>Departing from {{ depart_from }} on {{ flight_date }}</p>
+                <img src="{{ pic_path }}" alt="city_image" class="city-image">
+                <div class="price-and-temp">
+                    <h3>Ticket Price: £{{ flight_price }}</h3>
+                    <h3>Temperature today: {{ temperature }}°C ({{ uk_temp_diff }}°C hotter than the UK average)</h3>
+                </div>
+            </div>
+
+            <div class="container">
+                <p class="ai_para_1">{{ ai_para_1 }}</p>
+                <p class="ai_para_2">{{ ai_para_2 }}</p>
+            </div>        
+        {% endif %}
+    </div>
+
+    <script src="static/javascript/loading.js"></script>
+    <!-- <script src="static/javascript/page.js"></script> -->
+    <!-- <script src="static/javascript/plane.js"></script> -->
+
+</body>
 </html>

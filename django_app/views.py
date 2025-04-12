@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from src.find_my_flight import find_my_flight
 
 def home(request):
@@ -15,21 +15,32 @@ def home(request):
         if result:
             depart_from, city_name, pic_path, flight_price, flight_date, temperature, uk_avg_temp, ai_para_1, ai_para_2 = result
             uk_temp_diff = temperature - uk_avg_temp
-        else:
-            depart_from = city_name = pic_path = flight_price = flight_date = temperature = uk_avg_temp = ai_para_1 = ai_para_2 = None
-            uk_temp_diff = None
 
-        return render(request, 'home.html', {
-            'depart_from': depart_from,
-            'city_name': city_name,
-            'pic_path': pic_path,
-            'flight_price': flight_price,
-            'flight_date': flight_date,
-            'temperature': temperature,
-            'uk_avg_temp': uk_avg_temp,
-            'ai_para_1': ai_para_1,
-            'ai_para_2': ai_para_2,
-            'uk_temp_diff': uk_temp_diff
-        })
+            request.session['flight_data'] = {
+                'depart_from': depart_from,
+                'city_name': city_name,
+                'pic_path': pic_path,
+                'flight_price': flight_price,
+                'flight_date': flight_date,
+                'temperature': temperature,
+                'uk_avg_temp': uk_avg_temp,
+                'ai_para_1': ai_para_1,
+                'ai_para_2': ai_para_2,
+                'uk_temp_diff': uk_temp_diff
+            }
+        else:
+            request.session['no_flights_message'] = "No flights available to hotter countries available at that price."
+        
+        return redirect('home')  # assumes 'home' is the name of your URL pattern
+
     else:
-        return render(request, 'home.html')
+        flight_data = request.session.pop('flight_data', None)
+        no_flights_message = request.session.pop('no_flights_message', None)
+
+        context = {}
+        if flight_data:
+            context.update(flight_data)
+        if no_flights_message:
+            context['no_flights_message'] = no_flights_message
+
+        return render(request, 'home.html', context)
