@@ -3,10 +3,10 @@
 <html lang="en">
 <head>
     <title>sunny4money</title>
+    <meta name="viewport" content="width=device-width, initial-scale=0.9" />
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
+    <link rel="icon" type="image/png" href="static/images/favicon.png">
 </head>
 
 <body>
@@ -23,19 +23,29 @@
 
     <form id="sunnyForm" method="POST">
         {% csrf_token %}
-        <label for="location">Your approx. location:</label>
-        <input type="text" name="location" id="location" placeholder="Any UK city or post code will do" style="font-size: 14px; width: 300px; padding: 10px;" required><br>
     
-        <label for="budget">Your budget (£):</label>
-        <input type="number" name="budget" id="budget" placeholder="Recommended range: 50-150" style="font-size: 14px; width: 300px; padding: 10px;" required><br>
+        <div class="form-row">
+            <label for="location">Your approx. location:</label>
+            <input type="text" name="location" id="location" placeholder="Any UK city or post code will do" required>
+        </div>
     
-        <label for="sea">I need to see the sea!</label>
-        <input type="checkbox" id="sea" name="sea"><br>
+        <div class="form-row">
+            <label for="budget">Your budget (£):</label>
+            <input type="number" name="budget" id="budget" placeholder="Recommended range: 50-150" required>
+        </div>
     
-        <button type="submit">Submit</button>
+        <div class="form-row">
+            <label for="sea">I need to see the sea!</label>
+            <input type="checkbox" id="sea" name="sea">
+        </div>
+    
+        <div class="form-row">
+            <button type="submit">Submit</button>
+        </div>
     </form>
+    
 
-    <div id="loading" style="display: none;">
+    <div id="loading">
         <div class="spinner"></div>
         <p>Finding you somewhere warmer...</p>
     </div>
@@ -44,7 +54,7 @@
         {% if no_flights_message %}
             <h2>{{ no_flights_message }}</h2>
         {% endif %}
-
+    
         {% if city_name %}
             <div class="container">
                 <h2 class="reveal">You're going to {{ city_name }}!</h2>
@@ -55,13 +65,14 @@
                     <h3>Temperature today: {{ temperature }}°C ({{ uk_temp_diff }}°C hotter than the UK average)</h3>
                 </div>
             </div>
-
+    
             <div class="container">
                 <p class="ai_para_1">{{ ai_para_1 }}</p>
                 <p class="ai_para_2">{{ ai_para_2 }}</p>
             </div>        
         {% endif %}
     </div>
+    
 
     <script src="static/javascript/loading.js"></script>
 

@@ -1,4 +1,6 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render
+from django.http import JsonResponse
+from django.template.loader import render_to_string
 from src.find_my_flight import find_my_flight
 
 def home(request):
@@ -16,7 +18,7 @@ def home(request):
             depart_from, city_name, pic_path, flight_price, flight_date, temperature, uk_avg_temp, ai_para_1, ai_para_2 = result
             uk_temp_diff = temperature - uk_avg_temp
 
-            request.session['flight_data'] = {
+            context = {
                 'depart_from': depart_from,
                 'city_name': city_name,
                 'pic_path': pic_path,
@@ -29,18 +31,17 @@ def home(request):
                 'uk_temp_diff': uk_temp_diff
             }
         else:
-            request.session['no_flights_message'] = "No flights available to hotter countries available at that price."
-        
-        return redirect('home')  # assumes 'home' is the name of your URL pattern
+            context = {
+                'no_flights_message': "No flights available to hotter countries available at that price."
+            }
 
-    else:
-        flight_data = request.session.pop('flight_data', None)
-        no_flights_message = request.session.pop('no_flights_message', None)
-
-        context = {}
-        if flight_data:
-            context.update(flight_data)
-        if no_flights_message:
-            context['no_flights_message'] = no_flights_message
+        if request.headers.get('x-requested-with') == 'XMLHttpRequest':
+            full_html = render_to_string('home.html', context, request)
+            from bs4 import BeautifulSoup
+            soup = BeautifulSoup(full_html, 'html.parser')
+            results_html = str(soup.select_one('#results').decode_contents())
+            return JsonResponse({'html': results_html})
 
         return render(request, 'home.html', context)
+
+    return render(request, 'home.html')
