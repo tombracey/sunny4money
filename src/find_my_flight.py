@@ -119,6 +119,6 @@ def find_my_flight(location: str, budget, see_the_sea=False):
     ai_para_2 = ai_overview[1]
 
     depart_from = find_nearest_airport(location)[1]
-    pic_path = f'media/images/{city_name}.jpg'
+    pic_path = f'static/images/{city_name}.jpg'
 
     return depart_from, city_name, pic_path, flight_price, flight_date, temperature, uk_avg_temp, ai_para_1, ai_para_2
