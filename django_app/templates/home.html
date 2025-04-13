@@ -11,13 +11,17 @@
 
 <body>
     <div class="logo-container">
-        <img src="/media/images/plane.png" alt="Plane" class="plane">
-        <img src="/media/images/sun.png" alt="Sun" class="sun">
-        <h1>sunny4money.co.uk</h1>
-    </div>
-    <h1>Find the hottest holiday escape possible...</h1>
+        <div class="logo-inner">
+            <img src="/media/images/plane.png" alt="Plane" class="plane">
+            <img src="/media/images/sun.png" alt="Sun" class="sun">
+            <h1>sunny4money.co.uk</h1>
+        </div>
+    </div>   
 
-    <form id="sunnyForm" method="POST" onsubmit="sessionStorage.removeItem('pageLoaded');">
+
+    <h2>Find the hottest holiday escape possible...</h2>
+
+    <form id="sunnyForm" method="POST">
         {% csrf_token %}
         <label for="location">Your approx. location:</label>
         <input type="text" name="location" id="location" placeholder="Any UK city or post code will do" style="font-size: 14px; width: 300px; padding: 10px;" required><br>
@@ -60,8 +64,6 @@
     </div>
 
     <script src="static/javascript/loading.js"></script>
-    <!-- <script src="static/javascript/page.js"></script> -->
-    <!-- <script src="static/javascript/plane.js"></script> -->
 
 </body>
 </html>
