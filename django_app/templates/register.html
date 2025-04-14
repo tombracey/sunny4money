@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+
+{% block title %}Register{% endblock %}
+
+{% block body %}
+  <h2>Register</h2>
+
+  <form action="{% url 'register' %}" method="post">
+    {% csrf_token %}
+    <div class="login-signup">
+      <input type="email" name="email" placeholder="Email Address" required>
+    </div>
+    <div class="login-signup">
+      <input type="password" name="password" placeholder="Password" required>
+    </div>
+    <div class="login-signup">
+      <input type="password" name="confirmation" placeholder="Confirm Password" required>
+    </div>
+    <div class="login-signup">
+        <button type="submit">Register</button>
+    </div>
+  </form>
+
+  {% if message %}
+    <h3 style="color: red; margin-top: -15px">{{ message }}</h3>
+  {% else %}
+    <h3 style="margin-top: -15px">Create an account to save your flights.</h3>
+  {% endif %}
+
+{% endblock %}

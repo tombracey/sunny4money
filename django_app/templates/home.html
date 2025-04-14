@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
     <title>sunny4money</title>
-    <meta name="viewport" content="width=device-width, initial-scale=0.65, maximum-scale=0.65, user-scalable=no" />
+    <meta name="viewport" content="width=device-width, initial-scale=0.65, maximum-scale=0.65" />
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="icon" type="image/png" href="static/images/favicon.png">
@@ -14,9 +14,22 @@
         <div class="logo-inner">
             <img src="/static/images/plane.png" alt="Plane" class="plane">
             <img src="/static/images/sun.png" alt="Sun" class="sun">
-            <h1>sunny4money.co.uk</h1>
+            <div class="text-container">
+                <h1 class="url">sunny4money.co.uk</h1>
+                <div class="navbar">
+                    <a href="/" class="nav-link">Home</a>
+                    <a href="/about" class="nav-link">About</a>
+                    {% if user.is_authenticated %}
+                        <a href="/saved_flights" class="nav-link">Saved Flights</a>
+                        <a href="/logout" class="nav-link">Log Out</a>
+                    {% else %}
+                        <a href="/login" class="nav-link">Log In</a>
+                        <a href="/register" class="nav-link">Register</a>
+                    {% endif %}
+                </div>
+            </div>
         </div>
-    </div>   
+    </div>
 
 
     <h2>Find the hottest holiday escape possible...</h2>
@@ -62,7 +75,8 @@
                 <img src="{{ pic_path }}" alt="city_image" class="city-image">
                 <div class="price-and-temp">
                     <h3>Ticket Price: £{{ flight_price }}</h3>
-                    <h3>Temperature today: {{ temperature }}°C ({{ uk_temp_diff }}°C hotter than the UK average)</h3>
+                    <h3>Temperature today: {{ temperature }}°C</h3>
+                    <h4 style="margin-top: -13px; font-size: 13pt; margin-bottom: 5px;">{{ uk_temp_diff }}°C hotter than the UK</h4>
                 </div>
             </div>
     

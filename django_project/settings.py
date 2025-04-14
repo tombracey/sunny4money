@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-&%&pm@os)!cq22yn5z$zdy!5yp_(3u(rhi@x=i%ehhcpxcx53w'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['sunny4money.onrender.com', '127.0.0.1', 'sunny4money.co.uk']
 
@@ -131,3 +131,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+TIME_ZONE = 'Europe/London'
+USE_TZ = True
