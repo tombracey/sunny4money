@@ -147,10 +147,11 @@ button {
     cursor: pointer;
     padding: 10px 20px;
     font-size: 16px;
-    border: 2px solid #729fcf;
+    border: none;
     border-radius: 9px;
     transition: transform 0.2s ease;
     margin-bottom: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
 }
 
 button:hover,
@@ -222,6 +223,11 @@ button:focus {
 
 
 /* RESULTS */
+
+.reveal {
+    margin-top: 15px;
+    margin-bottom: 0px;
+}
 
 .city-image {
     max-width: 600px;
