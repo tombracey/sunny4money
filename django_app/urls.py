@@ -8,4 +8,5 @@ urlpatterns = [
     path('register', views.register, name='register'),
     path('logout', views.logout_view, name='logout'),
     path('saved_flights', views.saved_flights, name='saved_flights'),
+    path('saved_flights/delete/<int:flight_id>/', views.delete_flight, name='delete_flight'),    path('saved_flights/delete/<int:flight_id>/', views.delete_flight, name='delete_flight'),
 ]

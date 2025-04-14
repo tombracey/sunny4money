@@ -33,7 +33,7 @@ h2 {
     flex-direction: column;
 }
 
-.logo-inner { /*Sun and logo text*/
+.logo-inner {
     position: relative;
     display: flex;
     align-items: center;
@@ -163,7 +163,15 @@ button:focus {
     box-shadow: 0 0 5px rgba(114, 159, 207, 0.6);
 }
 
-
+#save-feedback {
+    color: white;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: 2px;
+    margin-bottom: 20px;
+    display: none;
+    margin-top: -6px;
+}
 
 
 /* LOADING */
@@ -235,6 +243,7 @@ button:focus {
     opacity: 0;
     transform: translateY(20px);
     transition: opacity 1.6s ease-out, transform 1.6s ease-out;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
 }
 
 .price-and-temp {
@@ -274,6 +283,7 @@ button:focus {
     margin-bottom: 35px;
     font-size: 13pt;
     opacity: 0.8;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
 }
 
 @media (max-width: 768px) {
@@ -294,3 +304,102 @@ button:focus {
 .login-signup {
     margin-bottom: 20px;
 }
+
+
+
+/* SAVED FLIGHTS */
+
+@media (min-width: 1024px) {
+    .saved-wrapper {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 20px;
+        }
+    }
+
+.saved-flights-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.saved-flight {
+    width: 30%;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    background: radial-gradient(circle, rgba(0, 33, 105, 0.3), rgba(11, 106, 169, 0.3));
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    padding-bottom: 0px;
+    animation: fadeSlideIn 1s ease-out;
+    animation-fill-mode: both;
+    opacity: 0;
+}
+
+.saved-flight h3 {
+    font-size: 18px;
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+.saved-text {
+    text-align: left;
+    padding: 0px;
+    margin: 0px;
+}
+
+.city-image-2 {
+    width: 100%;
+    max-height: 150px;
+    height: auto;
+    object-fit: contain;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+.saved-flight p {
+    font-size: 14px;
+    margin-bottom: 10px;
+    text-align: left;
+}
+
+.saved-flight button {
+    background-color: #ff4c4c;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    font-size: 14px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: auto;
+}
+
+.saved-flight button:hover {
+    background-color: #ff1a1a;
+}
+
+.saved-flight-footer {
+    margin-top: 10px;
+}
+
+@keyframes fadeSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 768px) {
+    .saved-flight {
+        width: 45%;
+        }
+    }

@@ -3,8 +3,35 @@
 {% block title %}Saved Flights{% endblock %}
 
 {% block body %}
-    <div class="container-2">
-        <h2>About This Project</h2>
-        <p>To be written...</p>
+    <h2>Your Saved Flights</h2>
+
+    {% if saved_flights %}
+    <div class="saved-wrapper">
+        <div class="saved-flights-container">
+            {% for flight in saved_flights %}
+                <div class="saved-flight">
+                    <h3>{{ flight.city_name }}</h3>
+                    <img src="{{ flight.pic_path }}" alt="{{ flight.city_name }}" class="city-image-2">
+                    <div class="saved-text">
+                        <p>From: {{ flight.depart_from }}</p>
+                        <p>Date: {{ flight.flight_date }}</p>
+                        <p>Price: £{{ flight.flight_price|floatformat:2 }}</p>
+                        <p>Temperature: {{ flight.temperature }}°C</p>
+                    </div>
+                    <div class="saved-flight-footer">
+                        <form method="POST" action="{% url 'delete_flight' flight.id %}">
+                            {% csrf_token %}
+                            <button type="submit">Delete Flight</button>
+                        </form>
+                    </div>                    
+                </div>
+            {% endfor %}
+        </div>
     </div>
+    {% else %}
+        <p>No saved flights yet!</p>
+    {% endif %}
 {% endblock %}
+
+
+

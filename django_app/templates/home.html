@@ -83,12 +83,26 @@
             <div class="container">
                 <p class="ai_para_1">{{ ai_para_1 }}</p>
                 <p class="ai_para_2">{{ ai_para_2 }}</p>
-            </div>        
+            </div>   
+            {% if user.is_authenticated %}
+                <form method="POST">
+                    {% csrf_token %}
+                    <input type="hidden" name="save_flight" value="1">
+                    <input type="hidden" name="city_name" value="{{ city_name }}">
+                    <input type="hidden" name="temperature" value="{{ temperature }}">
+                    <input type="hidden" name="pic_path" value="{{ pic_path }}">
+                    <input type="hidden" name="depart_from" value="{{ depart_from }}">
+                    <input type="hidden" name="flight_date" value="{{ flight_date }}">
+                    <input type="hidden" name="flight_price" value="{{ flight_price }}">
+                    <button type="submit" style="margin-top: -5px;">💾 Save this flight</button>
+                    <div id="save-feedback">✅ Flight saved</div>
+                </form>            
+            {% endif %}
         {% endif %}
     </div>
     
-
     <script src="static/javascript/loading.js"></script>
+    <script src="{% static 'javascript/save.js' %}"></script>
 
 </body>
 </html>
