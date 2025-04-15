@@ -34,11 +34,12 @@
         <p>This function is imported into the app's views.py, so that these variables can be passed to the homepage.</p>
         <h2>Frontend Considerations</h2>
         <p>The home page has a different navbar to the other templates which extend from layout.html just to stop the plane from flying in every time another page is opened.</p>
-        <p>JavaScript intercepts the submission of the main form and sends the form data via AJAX, so that the page doesn't have to reload to display the results. This makes the user experience seamless, and again, stops the plane from flying everywhere.</p>
+        <p>JavaScript intercepts the submission of the main form and sends the form data via AJAX, so that the page doesn't have to reload to display the results. This makes the user experience seamless, and again, stops the plane from flying around all the time.</p>
         <h2>Limitations</h2>
         <ul>
             <li><strong>Flight Price Data:</strong> Although the API I chose gave me access to the prices of thousands of flights, there's no way of getting the prices of all flights without paying a lot of money. There may be some cheaper tickets this site misses, and it would have been nice if I could have provided links to the airlines to buy the tickets.</li>
             <li><strong>Limited Locations:</strong> As this site is designed for UK users seeking budget-friendly sunshine, I've only focused on 39 destinations in Europe, North Africa and the Middle East. There are no options for long-haul flights even if they lead to hotter locations.</li>
+            <li><strong>Workflows:</strong> The scripts calling the APIs for each destination take ~10 mins to run locally, but a lot longer on the GitHub Actions free tier (can't complain about free compute). This means the site doesn't have the data to perform user requests in the early hours of the morning in the UK. This could be improved by making the large number of API calls asynchronously, or falling back on the previous day's data, but at the moment I'm relying on the target audience being asleep.</li>
         </ul>
     </div>
 {% endblock %}
