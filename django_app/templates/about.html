@@ -4,7 +4,41 @@
 
 {% block body %}
     <div class="container-2">
-        <h2>About This Project</h2>
-        <p>To be written...</p>
+        <div style="margin-bottom: 15px; margin-top: 10px; text-align: center;">
+            <a href="https://github.com/tombracey/sunny4money" target="_blank"  style="font-size: 14pt;">
+                The code behind this site
+            </a>
+        </div>
+        <div style="text-align: center; margin-bottom: 20px;">
+            <a href="https://github.com/tombracey" target="_blank" style="font-size: 14pt;">
+                My other projects
+            </a>
+        </div>        
+        
+        <h2>Overview</h2>
+        <p><strong>sunny4money.co.uk</strong> is a project aiming to help UK users find the hottest place they can fly to within their budget, and my final project submission for Harvard CS50W. Admittedly, the weather is lovely as I write this, so the site should become even more useful during the 7 months/year of cold and grey.</p>
+        
+        <p>Users can enter their approximate location, budget and whether it needs to be a beach holiday in the form on the home page. The form returns the hottest city they can fly to, along with the ticket price, the temperature that day, and an AI summary hyping the trip.</p>
+
+        <p>Users can also create an account, allowing them to save information about flights.</p>
+
+        <h2>Backend</h2>
+        <h4>Data Ingestion</h4>
+        <p>To fetch the latest weather and flight price data, Python scripts call APIs from OpenWeatherMap and Booking.com. GitHub Actions runs these scripts every morning, collecting the current temperature for the 39 possible destinations and the cheapest flight from each UK airport. The data is saved to CSVs within the project repo. I chose to store the data this way rather than fetching it on demand for a faster user experience, and it also ensures I can never exceed the API limits.</p>
+        <h4>Location</h4>
+        <p>Amazon Location Services allows 100,000 basic calls for free every month, and I use this to convert the user location into coordinates. "UK" gets appended to the end of each request to avoid it finding locations by the same name in another country.</p>
+        <p>With this, the site works out the nearest airport, using UK airport coordinates and Pythagoras' theorem. Sure, I didn't account for the curvature of the Earth, but it seems to work fine anyway.</p>
+        <h4>find_my_flight</h4>
+        <p>The 'find_my_flight' Python function takes the location, budget and 'see_the_sea' boolean. Using Pandas, it joins the weather and flight price data by place name and filters out prices above the budget, locations colder than the UK that day, and if requested, the ones without a beach. It then selects the hottest location from the remaining options.</p>
+        <p>Once the city, ticket price and temperature is known, they are given to a prompt to Google Gemini which is told to "talk about what a great destination it is, how they are getting a lot of sun for value and the unique attractions/history/culture" (this is the extent of my programming with AI at the moment).</p>
+        <p>This function is imported into the app's views.py, so that these variables can be passed to the homepage.</p>
+        <h2>Frontend Considerations</h2>
+        <p>The home page has a different navbar to the other templates which extend from layout.html just to stop the plane from flying in every time another page is opened.</p>
+        <p>JavaScript intercepts the submission of the main form and sends the form data via AJAX, so that the page doesn't have to reload to display the results. This makes the user experience seamless, and again, stops the plane from flying everywhere.</p>
+        <h2>Limitations</h2>
+        <ul>
+            <li><strong>Flight Price Data:</strong> Although the API I chose gave me access to the prices of thousands of flights, there's no way of getting the prices of all flights without paying a lot of money. There may be some cheaper tickets this site misses, and it would have been nice if I could have provided links to the airlines to buy the tickets.</li>
+            <li><strong>Limited Locations:</strong> As this site is designed for UK users seeking budget-friendly sunshine, I've only focused on 39 destinations in Europe, North Africa and the Middle East. There are no options for long-haul flights even if they lead to hotter locations.</li>
+        </ul>
     </div>
 {% endblock %}
