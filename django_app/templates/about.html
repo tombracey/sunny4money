@@ -15,7 +15,7 @@
             </a>
         </div>        
         
-        <h2>Overview</h2>
+        <h2 style="margin-top: 0px;">Overview</h2>
         <p><strong>sunny4money.co.uk</strong> is a project aiming to help UK users find the hottest place they can fly to within their budget, and my final project submission for Harvard CS50W. Admittedly, the weather is lovely as I write this, so the site should become even more useful during the 7 months/year of cold and grey.</p>
         
         <p>Users can enter their approximate location, budget and whether it needs to be a beach holiday in the form on the home page. The form returns the hottest city they can fly to, along with the ticket price, the temperature that day, and an AI summary hyping the trip.</p>
@@ -31,6 +31,8 @@
         <p>The 'find_my_flight' Python function takes the location, budget and 'see_the_sea' boolean from the user input and assembles the response. Using Pandas, it joins the flight price data from the nearest airport with the weather data by the names of the destinations. It filters out prices above the user's budget, locations colder than the UK that day, and if requested, locations without a beach. It then selects the hottest location from the remaining options.</p>
         <p>Once the city, ticket price and temperature are known, they are given in a prompt to Google Gemini, which is told to "talk about what a great destination it is, how they are getting a lot of sun for value and the unique attractions/history/culture". (This is the extent of my programming with AI at the moment)</p>
         <p>This function is imported into the app's views.py, so that these variables can be passed to the homepage.</p>
+        <h4>Django Models</h4>
+        To allow users to sign in and save flight details, I imported the default Django 'User' model, and created a 'SavedFlight' model. Saved flights can be viewed at the /saved_flights endpoint, which redirects to the login page if the user isn't signed in.
         <h2>Frontend Considerations</h2>
         <p>The home page has a different navbar to the other templates which extend from layout.html, just to stop the plane from disappearing and flying in again every time another page is opened.</p>
         <p>JavaScript intercepts the submission of the main form and sends the form data via AJAX, so that the user sees an animated loading wheel while the request is handled, instead of reloading the page to display the results. This makes for a smoother user experience, and again, stops the plane from flying around all the time.</p>
