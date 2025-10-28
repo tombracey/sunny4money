@@ -38,27 +38,6 @@ The home page has a different navbar to the other templates which extend from la
 
 [JavaScript](static/javascript/loading.js) intercepts the submission of the main form and sends the form data via AJAX, so that the user sees an animated loading wheel while the request is handled, instead of reloading the page to display the results. This makes for a smoother user experience, and again, stops the plane from flying around all the time.
 
-## Distinctiveness and Complexity
-
-This project is thematically distinct from the other CS50W projects - the main idea here is to pull data from APIs to produce personalised travel suggestions for UK users.
-
-It is more complex because:
-- It runs GitHub Actions workflows on schedule to ingest external data
-- The backend involves more complex data manipulation using Pandas
-- Basic AI integration
-- JavaScript handles form submissions
-- A lot more CSS than I've used previously, including animations
-- Frontend is tuned to be fully mobile-responsive and -optimised
-
-## How to Run
-
-In a virtual environment, run:
-- pip install -r requirements.txt
-- python manage.py runserver
-Additionally, AWS CLI will need to be installed due to the integration of Amazon Location Services, and API keys for Gemini, OpenWeatherMap and Booking.com.
-
-The site can be observed live at [**sunny4money.co.uk**](https://sunny4money.co.uk).
-
 ## Limitations
 
 - **Flight Price Data:** Although the API I chose gave me access to the prices of thousands of flights, there's no way of getting the prices of all flights without paying a lot of money. There may be some cheaper tickets this site misses, and it would have been nice if I could have provided links to the airlines to buy the tickets.
