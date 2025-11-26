@@ -1,0 +1,24 @@
+City,Price,Date,Beach
+Paris,62.87,2025-11-30,False
+Amsterdam,50.51,2025-12-01,False
+Athens,94.67,2025-11-30,True
+Barcelona,22.28,2025-12-01,True
+Berlin,47.35,2025-12-01,False
+Milan,59.25,2025-12-01,False
+Vienna,34.1,2025-11-30,False
+Brussels,78.83,2025-12-01,False
+Prague,34.7,2025-12-01,False
+Budapest,70.35,2025-12-01,False
+Tunis,112.89,2025-12-01,True
+Algiers,82.42,2025-12-01,True
+Tangier,72.62,2025-12-01,True
+Beirut,95.42,2025-11-28,True
+Amman,79.33,2025-11-30,True
+Manama,247.03,2025-11-30,True
+Albufeira,41.64,2025-11-29,True
+Dubrovnik,70.96,2025-11-30,True
+Naples,80.4,2025-12-01,True
+Sharm El Sheikh,113.45,2025-11-30,True
+Djerba,154.16,2025-11-28,True
+Essaouira,70.2,2025-12-01,True
+Agadir,57.65,2025-12-01,True
