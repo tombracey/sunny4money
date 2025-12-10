@@ -38,7 +38,7 @@ The home page has a different navbar to the other templates which extend from la
 
 [JavaScript](static/javascript/loading.js) intercepts the submission of the main form and sends the form data via AJAX, so that the user sees an animated loading wheel while the request is handled, instead of reloading the page to display the results. This makes for a smoother user experience, and again, stops the plane from flying around all the time.
 
-<!-- ## Distinctiveness and Complexity
+## Distinctiveness and Complexity
 
 This project is thematically distinct from the other CS50W projects - the main idea here is to pull data from APIs to produce personalised travel suggestions for UK users.
 
@@ -57,7 +57,7 @@ In a virtual environment, run:
 - python manage.py runserver
 Additionally, AWS CLI will need to be installed due to the integration of Amazon Location Services, and API keys for Gemini, OpenWeatherMap and Booking.com.
 
-The site can be observed live at [**sunny4money.co.uk**](https://sunny4money.co.uk). -->
+The site can be observed live at [**sunny4money.co.uk**](https://sunny4money.co.uk).
 
 ## Limitations
 
