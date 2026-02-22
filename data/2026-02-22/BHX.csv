@@ -1,0 +1,16 @@
+City,Price,Date,Beach
+Paris,54.57,2026-02-26,False
+Rome,50.52,2026-02-22,True
+Lisbon,84.43,2026-02-23,True
+Athens,89.08,2026-02-24,True
+Barcelona,32.85,2026-02-22,True
+Berlin,60.52,2026-02-23,False
+Milan,88.47,2026-02-23,False
+Casablanca,127.38,2026-02-26,True
+Algiers,66.15,2026-02-22,True
+Amman,126.17,2026-02-23,True
+Istanbul,103.77,2026-02-27,True
+Manama,124.51,2026-02-27,True
+Malaga,49.54,2026-02-26,True
+Dubrovnik,174.48,2026-02-23,True
+Naples,86.45,2026-02-23,True
